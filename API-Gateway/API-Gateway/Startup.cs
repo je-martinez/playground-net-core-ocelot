@@ -47,6 +47,7 @@ namespace API_Gateway
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Gateway v1"));
                 app.UseSwaggerForOcelotUI(opt =>
                 {
+                    opt.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Gateway v1");
                     opt.PathToSwaggerGenerator = "/swagger/docs";
                 });
             }

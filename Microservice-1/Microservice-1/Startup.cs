@@ -63,6 +63,7 @@ namespace Microservice_1
             services.AddScoped<IJwtService, JwtService>();
             services.AddHttpContextAccessor();
             services.AddCors();
+            services.AddMvc();
 
 
             services.AddControllers();
@@ -86,8 +87,8 @@ namespace Microservice_1
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
