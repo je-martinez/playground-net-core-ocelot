@@ -1,6 +1,19 @@
 {
   "Routes": [
     {
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44345
+        }
+      ],
+      "UpstreamPathTemplate": "/api/login",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "auth"
+    },
+    {
       "DownstreamPathTemplate": "/weatherforecast",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -10,10 +23,46 @@
         }
       ],
       "UpstreamPathTemplate": "/api/weather",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "microservice_1"
+    },
+    {
+      "DownstreamPathTemplate": "/weatherforecast/with-auth",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44371
+        }
+      ],
+      "UpstreamPathTemplate": "/api/weather/with-auth",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "microservice_1"
     }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:44313"
-  }
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "auth",
+      "Config": [
+        {
+          "Name": "Auth API",
+          "Version": "v1",
+          "Url": "https://localhost:44345/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "microservice_1",
+      "Config": [
+        {
+          "Name": "Microservice #1 API",
+          "Version": "v1",
+          "Url": "https://localhost:44371/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
 }

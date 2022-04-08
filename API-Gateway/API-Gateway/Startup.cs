@@ -29,6 +29,7 @@ namespace API_Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOcelot();
+            services.AddSwaggerForOcelot(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,8 +44,13 @@ namespace API_Gateway
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Gateway v1"));
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Gateway v1"));
+                app.UseSwaggerForOcelotUI(opt =>
+                {
+                    opt.PathToSwaggerGenerator = "/swagger/docs";
+                });
             }
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 
